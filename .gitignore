@@ -1,0 +1,4 @@
+answer/
+.xmake/
+build/
+*.pdf

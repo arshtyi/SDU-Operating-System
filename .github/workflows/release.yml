@@ -1,0 +1,61 @@
+name: Build PDF and Publish
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Fontist
+        uses: fontist/setup-fontist@v2
+        with:
+          fontist-version: "2.1.4"
+
+      - name: Install fonts from manifest
+        run: |
+          fontist install "Times New Roman" "SimHei" "Noto Serif CJK SC" "Noto Sans CJK SC" "TeX Gyre Termes Math" "TeXGyreTermes" --newest -a -h
+
+      - name: Create output directory
+        run: mkdir -p output
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Compile Typst document
+        run: |
+          typst compile quiz/main.typ output/quiz.pdf --font-path ~/.fontist/fonts
+          typst compile homework/main.typ output/homework.pdf --font-path ~/.fontist/fonts
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(TZ='Asia/Shanghai' date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.date.outputs.date }}
+          name: Release ${{ steps.date.outputs.date }}
+          body: |
+            ## Build Information
+
+            This was automatically compiled and released by GitHub Actions on `${{ steps.date.outputs.date }}`.
+
+            - **Commit Hash**: `${{ github.sha }}`
+            - **Commit Message**: ${{ github.event.head_commit.message }}
+
+            ### Upstream & Resources
+
+            - **Source Code**: [${{ github.repository }}](https://github.com/${{ github.repository }})
+          files: output/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
