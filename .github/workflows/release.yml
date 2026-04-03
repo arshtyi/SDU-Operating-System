@@ -28,6 +28,9 @@ jobs:
       - name: Create output directory
         run: mkdir -p output
 
+      - name: Compress src
+        run: tar -cJf output/source.tar.xz  experiment
+
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
 
