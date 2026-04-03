@@ -1,0 +1,3 @@
+[submodule "ezexam"]
+	path = ezexam
+	url = https://github.com/gbchu/ezexam.git

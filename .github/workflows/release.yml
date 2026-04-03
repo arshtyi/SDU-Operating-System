@@ -31,8 +31,12 @@ jobs:
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
 
+      - name: Update submodules
+        run: git submodule update --init ezexam
+
       - name: Compile Typst document
         run: |
+          export TYPST_ROOT=$(pwd)
           typst compile quiz/main.typ output/quiz.pdf --font-path ~/.fontist/fonts
           typst compile homework/main.typ output/homework.pdf --font-path ~/.fontist/fonts
 
