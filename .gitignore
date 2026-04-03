@@ -2,3 +2,7 @@ answer/
 .xmake/
 build/
 *.pdf
+*.pptx
+report/
+*.zip
+.venv/
