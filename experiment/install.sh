@@ -42,7 +42,7 @@ if apt-cache policy xmake | grep -q "Candidate: (none)"; then
     xmake_source="ppa"
 fi
 
-sudo apt install -y xmake gcc g++ build-essential ninja-build
+sudo apt install -y xmake ninja-build gcc g++ build-essential libreadline-dev
 xmake_version="$(xmake --version | head -n 1)"
 gcc_version="$(gcc --version | head -n 1)"
 gpp_version="$(g++ --version | head -n 1)"
