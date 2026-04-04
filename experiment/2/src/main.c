@@ -6,66 +6,110 @@
 int pipe_x[2];
 int pipe_y[2];
 
-struct HelpX
+typedef struct
 {
-    int x, last_result;
-};
+    int x;
+} FxArgs;
 
-void f_x(struct HelpX *h)
+typedef struct
 {
-    if (h->x != 1)
+    int y;
+} FyArgs;
+
+void *thread_fx(void *arg)
+{
+    FxArgs *args = (FxArgs *)arg;
+    int n = args->x;
+    int result = 1;
+
+    for (int i = 2; i <= n; ++i)
     {
-        h->last_result = h->last_result * h->x;
-        h->x--;
-        f_x(h);
+        result *= i;
     }
-    else
+
+    if (write(pipe_x[1], &result, sizeof(result)) != sizeof(result))
     {
-        printf("thread f_x get result %d\n", h->last_result);
-        write(pipe_x[1], &h->last_result, sizeof(int));
+        perror("thread f(x) write failed");
     }
     close(pipe_x[1]);
+
+    printf("thread f(x): f(%d) = %d\n", n, result);
+    return NULL;
 }
 
-void f_y(int *y)
+void *thread_fy(void *arg)
 {
-    if (*y <= 2)
+    FyArgs *args = (FyArgs *)arg;
+    int n = args->y;
+    int result = 1;
+
+    if (n > 2)
     {
-        int tmp = 1;
-        printf("thread f_y get result %d\n", tmp);
-        write(pipe_y[1], &tmp, sizeof(int));
-    }
-    else
-    {
-        int a = 1, b = 1;
-        int tmp;
-        for (int i = 3; i <= *y; i++)
+        int a = 1;
+        int b = 1;
+        for (int i = 3; i <= n; ++i)
         {
-            tmp = a + b;
-            a = b, b = tmp;
+            int c = a + b;
+            a = b;
+            b = c;
         }
-        printf("thread f_y get result %d\n", tmp);
-        write(pipe_y[1], &tmp, sizeof(int));
+        result = b;
+    }
+
+    if (write(pipe_y[1], &result, sizeof(result)) != sizeof(result))
+    {
+        perror("thread f(y) write failed");
     }
     close(pipe_y[1]);
+
+    printf("thread f(y): f(%d) = %d\n", n, result);
+    return NULL;
 }
 
-void f_xy()
+void *thread_fxy(void *arg)
 {
-    int re_x, re_y;
-    read(pipe_x[0], &re_x, sizeof(int));
-    read(pipe_y[0], &re_y, sizeof(int));
-    int sum = re_x + re_y;
-    printf("thread f_xy get result %d\n", sum);
+    (void)arg;
+    int fx = 0;
+    int fy = 0;
+
+    if (read(pipe_x[0], &fx, sizeof(fx)) != sizeof(fx))
+    {
+        perror("thread f(x,y) read f(x) failed");
+        close(pipe_x[0]);
+        close(pipe_y[0]);
+        return NULL;
+    }
+    if (read(pipe_y[0], &fy, sizeof(fy)) != sizeof(fy))
+    {
+        perror("thread f(x,y) read f(y) failed");
+        close(pipe_x[0]);
+        close(pipe_y[0]);
+        return NULL;
+    }
+
+    close(pipe_x[0]);
+    close(pipe_y[0]);
+
+    printf("thread f(x,y): f(x,y) = f(x) + f(y) = %d + %d = %d\n", fx, fy, fx + fy);
+    return NULL;
 }
 
 int main()
 {
-    struct HelpX x;
-    int y;
+    FxArgs x_args;
+    FyArgs y_args;
+
     printf("Enter x, y: ");
-    scanf("%d %d", &x.x, &y);
-    x.last_result = 1;
+    if (scanf("%d %d", &x_args.x, &y_args.y) != 2)
+    {
+        fprintf(stderr, "input error: please enter two integers.\n");
+        return EXIT_FAILURE;
+    }
+    if (x_args.x < 1 || y_args.y < 1)
+    {
+        fprintf(stderr, "input error: x >= 1 and y >= 1 are required.\n");
+        return EXIT_FAILURE;
+    }
 
     if (pipe(pipe_x) < 0 || pipe(pipe_y) < 0)
     {
@@ -73,10 +117,25 @@ int main()
         exit(EXIT_FAILURE);
     }
 
-    pthread_t thrdx, thrdy, thrdxy;
-    pthread_create(&thrdy, NULL, (void *(*)(void *))f_y, &y);
-    pthread_create(&thrdx, NULL, (void *(*)(void *))f_x, &x);
-    pthread_create(&thrdxy, NULL, (void *(*)(void))f_xy, NULL);
+    pthread_t thrdx;
+    pthread_t thrdy;
+    pthread_t thrdxy;
+
+    if (pthread_create(&thrdx, NULL, thread_fx, &x_args) != 0)
+    {
+        perror("pthread_create f(x) failed");
+        return EXIT_FAILURE;
+    }
+    if (pthread_create(&thrdy, NULL, thread_fy, &y_args) != 0)
+    {
+        perror("pthread_create f(y) failed");
+        return EXIT_FAILURE;
+    }
+    if (pthread_create(&thrdxy, NULL, thread_fxy, NULL) != 0)
+    {
+        perror("pthread_create f(x,y) failed");
+        return EXIT_FAILURE;
+    }
 
     pthread_join(thrdx, NULL);
     pthread_join(thrdy, NULL);

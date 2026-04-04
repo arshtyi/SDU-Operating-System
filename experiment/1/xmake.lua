@@ -1,8 +1,12 @@
 set_project("experiment1")
 set_version("1.0.0")
-set_languages("c11")
 
+set_languages("c11")
+set_toolset("gcc")
+set_plat("linux")
+set_arch("x86_64")
 add_defines("_POSIX_C_SOURCE=200809L")
+add_defines("LINUX")
 
 for _, test_file in ipairs(os.files("test/*.c")) do
     local test_name = path.basename(test_file)
