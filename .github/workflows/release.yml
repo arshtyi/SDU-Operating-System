@@ -34,8 +34,8 @@ jobs:
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
 
-      - name: Update submodules
-        run: git submodule update --init ezexam
+      # - name: Update submodules
+      #   run: git submodule update --init ezexam
 
       - name: Compile Typst document
         run: |

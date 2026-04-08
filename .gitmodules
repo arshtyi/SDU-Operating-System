@@ -1,6 +1,3 @@
-[submodule "ezexam"]
-	path = ezexam
-	url = https://github.com/gbchu/ezexam.git
 [submodule "text"]
 	path = text
 	url = https://github.com/arshtyi/SDU-Operating-System-PPTs.git

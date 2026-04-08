@@ -1,15 +1,13 @@
-// #import "@preview/ezexam:0.3.1": *
-#import "../ezexam/ezexam.typ": *
+#import "@preview/ezexam:0.3.1": *
 
 #show: setup.with(
     mode: EXAM,
     resume: false,
-    ref-color: black,
+    // ref-color: black,
     // list-spacing: 1.5em,
     enum-spacing: 1.5em,
 )
 // #set smartquote(quotes: "\"\"")
-
 #show link: it => text(fill: blue.darken(20%))[#underline(it)]
 
 #title[
@@ -68,4 +66,8 @@
 = No.9
 #question[
     简述Linux CFS调度器的基本原理.
+]
+= No.10
+#question[
+    举例说明最佳分配算法在什么情况下会导致分配碎片.
 ]

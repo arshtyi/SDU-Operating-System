@@ -1,5 +1,4 @@
-// #import "@preview/ezexam:0.3.1": *
-#import "../ezexam/ezexam.typ": *
+#import "@preview/ezexam:0.3.1": *
 #import "@preview/zebraw:0.6.1": *
 #import "@preview/subpar:0.2.2"
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
@@ -8,26 +7,23 @@
 #set page(height: auto)
 #set par(justify: true)
 #set smartquote(quotes: "\"\"")
-
 #show: zebraw.with(lang: false)
 #show: setup.with(
     mode: EXAM,
     resume: false,
-    ref-color: black,
+    // ref-color: black,
     // list-spacing: 1.5em,
     enum-spacing: 1.5em,
     // line-height: 1em,
 )
-
 #show link: it => text(fill: blue.darken(20%))[#underline(it)]
 
-#let question = question.with(supplement: "Q ", ref-on: true)
+#let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
 
 #title[
     山东大学计算机科学与技术学院 \
     24 数据、智能操作系统课后作业
 ]
-
 #notice(
     [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
     [源码:#link("https://github.com/arshtyi/SDU-Operating-System").],
@@ -468,4 +464,32 @@
 
 #question[
     HRRN调度算法会导致饥饿现象吗?FPRR呢?为什么?
+]
+= No.6
+#question[
+    查询资料并回答:
+    + Linux中线程`nice`值的含义.
+    + 用什么命令来查看和设置线程的`nice`值.
+    + 为什么Linux仅允许root用户设置线程的`nice`值为负数?
+]
+
+#question[
+    当存在一个外设产生大量频繁I/O请求时,说明I/O设备响应时间和CPU利用率之间为何存在矛盾.(tips:线程调度和上下文切换开销)
+]
+
+#question[
+    说明平均周转时间和最大等待时间在什么情况下存在矛盾以及调度策略兼顾它们有什么困难.(tips:平均值和极端值描述的区别;系统中一般存在一系列小任务和少数长任务)
+]
+
+#question[
+    查询资料并回答(tips:考虑新加入系统中的线程的`Rv`的设置):
+    + Linux的CFS调度器是否会产生饥饿?
+    + 为什么会有(1)中的结果?
+    + 说明`min_runtime`的维护及其用途.
+]
+
+#question[
+    阅读#link("https://ieeexplore.ieee.org/abstract/document/9113117", "Slite: OS Support for Near Zero-Cost, Configurable Scheduling"),回答:
+    + 该文献如何实现在用户模式下调度内核级线程?
+    + 这样做有什么优越效果?
 ]
