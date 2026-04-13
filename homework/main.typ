@@ -17,7 +17,6 @@
     // line-height: 1em,
 )
 #show link: it => text(fill: blue.darken(20%))[#underline(it)]
-
 #let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
 
 #title[
