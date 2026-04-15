@@ -19,7 +19,7 @@ jobs:
       - name: Setup Fontist
         uses: fontist/setup-fontist@v2
 
-      - name: Install fonts from manifest
+      - name: Install fonts with Fontist
         run: |
           fontist install "Times New Roman" "SimHei" "Noto Serif CJK SC" "Noto Sans CJK SC" "TeX Gyre Termes Math" "TeXGyreTermes" --newest -a -h
 

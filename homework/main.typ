@@ -3,6 +3,7 @@
 #import "@preview/subpar:0.2.2"
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 #import "@preview/pinit:0.2.2": *
+#import "@preview/fancy-units:0.1.1": add-macros, fancy-units-configure, num, qty, unit
 
 #set page(height: auto)
 #set par(justify: true)
@@ -17,7 +18,13 @@
     // line-height: 1em,
 )
 #show link: it => text(fill: blue.darken(20%))[#underline(it)]
+// #show strong: it => text(weight: "bold", it)
 #let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
+
+#let (B, TB) = (
+    unit[B],
+    unit[TB],
+)
 
 #title[
     山东大学计算机科学与技术学院 \
@@ -491,4 +498,77 @@
     阅读#link("https://ieeexplore.ieee.org/abstract/document/9113117", "Slite: OS Support for Near Zero-Cost, Configurable Scheduling"),回答:
     + 该文献如何实现在用户模式下调度内核级线程?
     + 这样做有什么优越效果?
+]
+= No.7
+#question[
+    阅读课本相应内容.
+]
+
+#question[
+    回顾线程的RR调度算法,回答下列问题:
+    + 假设线程无法主动放弃处理器,且时间片的大小固定,那么它对处理器时间的分配可能产生碎片吗?
+    + 如果(1)产生,是哪种碎片?
+    + 如果(1)中线程可以主动放弃处理器呢?
+]
+
+#question[
+    最新的x86-64系统使用五级页表.假设快表命中时,若缓存命中则内存访问都需要$1$个时钟周期,否则需要$100$个时钟周期.(tips:快表不命中时需要访存查询表项,这也可能缓存不命中)回答下列问题:
+    + 第一次访问一个不在快表中存在的页需要多少时钟周期?紧接着访问同一页又需要多少时钟周期?
+    + 假设快表总是命中,而缓存命中率$c$,则平均一次内存访问需要多少时钟周期?
+    + 假设缓存总是命中,而快表命中率$t$,则平均一次内存访问需要多少时钟周期?
+    + 假设缓存命中率$c$和快表命中率$t$,且二者命中为独立随机事件,则平均一次内存访问需要多少时钟周期?
+    + 结合上述,谈谈那些需要确定性的系统中为什么需要锁定部分快表.
+]
+
+#question[
+    接@1-7-3 ,假设当页面不存在时,需要额外的$10000$个时钟周期来把它换入内存.回答下列问题:
+    + 第一次访问任意一页最多需要多少时钟周期?紧接着访问同一页又需要多少时钟周期?
+    + 假设快表总是命中,而页面在内存中的可能性为$m$,则平均一次内存访问需要多少时钟周期?
+    + 假设页面在内存中的可能性为$m$,且其与缓存和快表的命中都是独立随机事件,则平均一次内存访问需要多少时钟周期?
+]
+
+#question[
+    仿照短期调度和中期调度的工作集的定义,定义长期调度的工作集.并谈谈SSHD对比SSD、HDD的优势.
+]
+
+#question[
+    阅读#link("https://ieeexplore.ieee.org/document/7108391", "Providing Task Isolation via TLB Coloring"). 回答:
+    + 该文献如何实现快表着色?
+    + 这样做为何能够放置不同任务的工作集互相干扰?
+    + 普通缓存能进行这样的着色吗?
+]
+
+#question[
+    考虑一台计算机,其在运行任务时硬盘灯狂闪、卡顿,用户检查系统性能计数器发现是请求分页大量发生.对于以下解决方案:
+    + 升级或超频CPU.
+    + 升级或超频内存频率.
+    + 升级内存容量.
+    + 更换同平台的高端主板.
+    + 将硬盘组成RAID.
+    + 将硬盘换成$20 #TB$HDD.
+    + 将硬盘换成$1 #TB$SSD.
+    + 升级显卡和显示器.
+    + 改进请求分页算法.
+    + 增加使用更大的页.
+    + 清理不关键的后台程序,整理磁盘碎片.
+    问:
+    + 哪些能够产生正面效果?它们中的哪些效果最不明显?为什么?
+    + 哪个是根本的解决方案?哪个是最省钱的解决方案?为什么?
+]
+
+#question[
+    求证:
+    + 不带抢占的SJF处理器调度算法是平均时间意义上最好的算法.
+    + FIFO处理器调度算法不是任何意义上的公平调度算法.
+    + FIFO页面替换算法的竞争比是$N$,其中$N$是工作集包含的总页面数.
+    + LRU页面替换算法的竞争比是$N$,其中$N$含义同(3).
+    + LFU页面替换算法的竞争比是$infinity$.
+    + LRU和FIFO是竞争比意义上的最优在线算法.
+    Tips:
+    + 交换SJF序列的两个任务看是否恶化情况.
+    + 反例.
+    + 切分访问序列,每段含有$N$种独立页面
+    + 同(3)
+    + 极端反例
+    + 同(3)
 ]
