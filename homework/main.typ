@@ -4,6 +4,7 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 #import "@preview/pinit:0.2.2": *
 #import "@preview/fancy-units:0.1.1": add-macros, fancy-units-configure, num, qty, unit
+// #import "@preview/itemize:0.2.0" as el
 
 #set page(height: auto)
 #set par(justify: true)
@@ -17,9 +18,11 @@
     enum-spacing: 1.5em,
     // line-height: 1em,
 )
-#show link: it => text(fill: blue.darken(20%))[#underline(it)]
+#show link: it => text(fill: blue.darken(20%), underline(it))
 // #show strong: it => text(weight: "bold", it)
 #let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
+// #show: el.default-enum-list
+// #show: el.config.ref
 
 #let (B, TB) = (
     unit[B],
