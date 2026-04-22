@@ -11,9 +11,9 @@
 #show link: it => text(fill: blue.darken(20%))[#underline(it)]
 
 #title[
-    山东大学计算机科学与技术学院\
-    24 数据、智能操作系统课堂测验
+    山东大学计算机科学与技术学院操作系统课堂测验
 ]
+#exam-info(info: (班级: "24智能", 教师: "刘健中"))
 #notice(
     [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
     [源码:#link("https://github.com/arshtyi/SDU-Operating-System").],
@@ -82,4 +82,8 @@
 = No.13
 #question[
     简述从文件块到物理块的映射的所有中间层次及他们提供的功能.
+]
+= No.14
+#question[
+    简述混合索引法的好处以及一级索引多和三级索引多哪种性能更好.
 ]
