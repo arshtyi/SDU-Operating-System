@@ -8,10 +8,15 @@ set_arch("x86_64")
 add_defines("_POSIX_C_SOURCE=200809L")
 add_defines("LINUX")
 
-target("readline")
-    set_kind("binary")
-    add_links("readline")
-    add_files("test/readline.c")
+for _, test_file in ipairs(os.files("test/*.c")) do
+    local test_name = path.basename(test_file)
+    target(test_name)
+        set_kind("binary")
+        add_files(test_file)
+        if test_name == "readline" then
+            add_links("readline")
+        end
+end
 
 target("simshell")
     set_kind("binary")
