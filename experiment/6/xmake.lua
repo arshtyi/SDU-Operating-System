@@ -1,0 +1,25 @@
+set_project("experiment6")
+set_version("1.0.0")
+
+set_languages("c++11")
+set_toolset("gcc")
+set_plat("linux")
+set_arch("x86_64")
+add_defines("_POSIX_C_SOURCE=200809L")
+add_defines("LINUX")
+
+target("dp")
+    set_kind("binary")
+    add_files("example/src/*.cpp")
+    add_includedirs("example/include")
+
+target("core_lib")
+    set_kind("static")
+    add_files("lib/*.cpp")
+    add_includedirs("include")
+
+target("main")
+    set_kind("binary")
+    add_files("src/main.cpp")
+    add_includedirs("include")
+    add_deps("core_lib")
