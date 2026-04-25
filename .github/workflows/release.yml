@@ -1,9 +1,12 @@
 name: Build PDF and Publish
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'homework/**'
+  #     - 'quiz/**'
   workflow_dispatch:
 
 jobs:
@@ -25,9 +28,6 @@ jobs:
 
       - name: Create output directory
         run: mkdir -p output
-
-      - name: Compress src
-        run: tar -cJf output/source.tar.xz  experiment
 
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
