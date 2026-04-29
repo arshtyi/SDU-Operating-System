@@ -1,13 +1,12 @@
 #import "@preview/ezexam:0.3.1": *
+#import "@preview/fancy-units:0.1.1": add-macros, fancy-units-configure, num, qty, unit
 
 #show: setup.with(
     mode: EXAM,
     resume: false,
-    // ref-color: black,
-    // list-spacing: 1.5em,
     enum-spacing: 1.5em,
 )
-// #set smartquote(quotes: "\"\"")
+#set smartquote(quotes: "\"\"")
 #show link: it => text(fill: blue.darken(20%))[#underline(it)]
 
 #title[
@@ -17,6 +16,19 @@
 #notice(
     [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
     [源码:#link("https://github.com/arshtyi/SDU-Operating-System").],
+)
+
+#let (K,) = (
+    unit[K],
+)
+#let (Hz,) = (
+    unit[Hz],
+)
+#let (Gbps,) = (
+    unit[Gbps],
+)
+#let (bit,) = (
+    unit[bit],
 )
 
 = No.1
@@ -90,4 +102,13 @@
 = No.15
 #question[
     简述ZFS相比于EXT4的优势.
+]
+= No.16
+#question[
+    证明HDMI1.4无法提供$4 #K @ 60 #Hz$的显示输出.
+
+    Tips:
+    + HDMI1.4的最大带宽为$10.2 #Gbps$.
+    + $4#K$的分辨率为$3840 times 2160$.
+    + 显示器一般使用$24#bit$色彩空间.
 ]
