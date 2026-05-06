@@ -8,13 +8,26 @@
 #set page(height: auto)
 #set par(justify: true)
 #set smartquote(quotes: "\"\"")
-#show: zebraw.with(lang: false)
+#show: zebraw
 #show: setup.with(
     mode: EXAM,
     resume: false,
     enum-spacing: 1.5em,
 )
 #show link: it => text(fill: blue.darken(20%), underline(it))
+#show raw: set text(font: ("IBM Plex Mono", "Source Han Sans SC", "Noto Sans CJK SC"))
+#show raw.where(block: false): box.with(
+    fill: luma(240),
+    inset: (x: 0.3em, y: 0em),
+    outset: (x: 0em, y: 0.3em),
+    radius: 0.2em,
+)
+#show raw.where(block: true): block.with(
+    fill: luma(248),
+    stroke: 0.5pt + rgb("bfbfbf"),
+    inset: 0.7em,
+    radius: 4pt,
+)
 #let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
 
 #let (B, GB, TB) = (
@@ -669,7 +682,7 @@
 #question[
     回答:
     + 在删除软链接前就删除了它指向的文件会怎样?
-    + 在Windows下位某文件建立一个快捷方式后删除该文件并打开快捷方式,操作系统会怎样反应?
+    + 在Windows下为某文件建立一个快捷方式后删除该文件并打开快捷方式,怎样反应?
     + 如果(2)中在该位置建立一个同名文件后再打开快捷方式,操作系统会怎样反应?
 ]
 
@@ -689,4 +702,113 @@
     + 使用连续存储法访问该文件时,需要做多少次磁盘访问?
     + 使用不带优化的固定三级索引存储法访问该文件时,需要做多少次磁盘访问?
     + 使用带固定大小索引节点表的1-3级混合索引法且FCB中可直接存储小文件,则访问该文件时需要做多少次磁盘访问?给出上界和下界.
+]
+
+= No.10
+#question[
+    查阅资料并回答:
+    + 如何使用`chmod`命令设置文件的权限?
+    + `chmod`后跟着的数字代表什么?
+    + 为什么执行`chmod`命令需要root权限?
+]
+
+#question[
+    在数据磁带行业,磁带很便宜而磁带机很贵,但在喷墨打印行业却是墨盒很贵而打印机很便宜.是什么导致了这两个市场的商业策略不同?
+]
+
+#question[
+    回答:
+    + EXT4文件系统对软链接做了什么特殊优化?
+    + 软链接是怎么在磁盘上存储的?
+    + 软链接和常规文件在长度上有什么不同?
+]
+
+#question[
+    EXT3引入了目录文件哈希树支持但仍然兼容EXT2.是怎么伪装哈希树做到这一点的.
+]
+
+#question[
+    LTFS可以看作一种日志结构文件系统吗?为什么?
+]
+
+#question[
+    若闪存一旦出现坏块其上的数据立刻丢失.参考RAID5,提出一种在使用中发现新坏块不导致数据丢失的方法.
+]
+
+#question[
+    介绍YAFFS的主动垃圾回收功能的配图(亦如下)中有一处错误,指出并纠正.
+    #{
+        set math.cancel(cross: true, stroke: 3pt + rgb("#f30000"))
+        set text(fill: white)
+        grid(
+            columns: (1fr,) * 9,
+            align: center + horizon,
+            inset: (x: 3.2pt, y: 4pt),
+            stroke: (x, y) => if y in (0, 2) { 1pt + black } else if y == 1 { none },
+            fill: (x, y) => if y == 0 {
+                if x in (0, 5, 7) {
+                    rgb("#00b0f0")
+                } else if x in (1, 2, 3, 4, 6) {
+                    rgb("#ed7d31")
+                }
+            } else if y == 2 {
+                if x in (5, 7) {
+                    rgb("#00b0f0")
+                } else if x in (4, 6, 8) {
+                    rgb("#ed7d31")
+                }
+            },
+            $cancel("对象头")$,
+            $cancel("数据块1")$,
+            $cancel("数据块2")$,
+            [数据块3],
+            [数据块1],
+            $cancel("对象头")$,
+            [数据块2],
+            [对象头],
+            [],
+            grid.cell(
+                colspan: 9,
+                align(
+                    center,
+                    polygon(
+                        fill: rgb("#e53935"),
+                        stroke: none,
+                        (9pt, 0pt),
+                        (21pt, 0pt),
+                        (21pt, 15pt),
+                        (30pt, 15pt),
+                        (15pt, 33pt),
+                        (0pt, 15pt),
+                        (9pt, 15pt),
+                    ),
+                ),
+            ),
+            [], [], [], [], [数据块1], $cancel("对象头")$, [数据块2], [对象头], [数据块3],
+        )
+    }
+]
+
+#question[
+    使用`*.vmdk`或`*.vdi`时,虚拟机硬盘I/O性能会比物理机差.为什么?怎样使二者性能接近?
+]
+
+#question[
+    简述NFS文件系统及其用途.
+]
+
+#question[
+    回答:
+    + 在PROC文件系统中怎么查询某进程的当前运行状态?
+    + 给出一个查询结果.
+]
+
+#question[
+    回答:
+    + 用于```c fopen()```等C语言运行时库函数的```c FILE```结构体和用于```c open()```等系统调用的```c fd```数字有何不同?
+    + ```c fopen()```最终怎样调用```c open()```?
+]
+
+#question[
+    将共享文件夹权限设置为仅允许添加新文件有什么用处?
 ]
