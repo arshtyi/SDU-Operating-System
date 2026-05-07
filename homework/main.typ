@@ -1,19 +1,21 @@
 #import "@preview/ezexam:0.3.1": *
-#import "@preview/zebraw:0.6.1": *
 #import "@preview/subpar:0.2.2"
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
+#import "@preview/zero:0.6.1": num, set-num, set-unit, zi
 #import "@preview/pinit:0.2.2": *
-#import "@preview/fancy-units:0.1.1": add-macros, fancy-units-configure, num, qty, unit
 
-#set page(height: auto)
-#set par(justify: true)
-#set smartquote(quotes: "\"\"")
-#show: zebraw
 #show: setup.with(
     mode: EXAM,
     resume: false,
-    enum-spacing: 1.5em,
+    heading-top: 0em,
+    heading-bottom: 0.4em,
+    line-height: 0.65em,
+    par-spacing: 0.65em,
+    enum-spacing: 0.65em,
+    list-spacing: 0.65em,
 )
+#set par(justify: true)
+#set smartquote(quotes: "\"\"")
 #show link: it => text(fill: blue.darken(20%), underline(it))
 #show raw: set text(font: ("IBM Plex Mono", "Source Han Sans SC", "Noto Sans CJK SC"))
 #show raw.where(block: false): box.with(
@@ -28,21 +30,20 @@
     inset: 0.7em,
     radius: 4pt,
 )
-#let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
+#set-unit(fraction: "power")
 
+#let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
 #let (B, GB, TB) = (
-    unit[B],
-    unit[GB],
-    unit[TB],
+    zi.declare("B"),
+    zi.declare("GB"),
+    zi.declare("TB"),
 )
 
-#title[
-    山东大学计算机科学与技术学院操作系统课后作业
-]
+#title[山东大学计算机科学与技术学院操作系统课后作业]
 #exam-info(info: (班级: "24智能", 教师: "刘健中"))
 #notice(
     [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
-    [源码:#link("https://github.com/arshtyi/SDU-Operating-System").],
+    [源码:#link("https://github.com/arshtyi/SDU-Operating-System", "source").],
 )
 
 = No.1
@@ -72,303 +73,298 @@
 = No.2
 #question[
     $1$进制使用$1$的数量来表示数字的大小.下面给出了实现"$3+4$"的图灵机纸带及其操作过程, 请写出实现"$2+3$"的图灵机纸带及其操作过程.
-    #align(center)[
-        #show figure: set block(breakable: true)
-        #show table.cell: it => {
-            if (it.y == 10 - 1 and it.x > 0) {
-                text(fill: red.darken(20%), it)
-            } else { it }
-        }
-        #figure(
-            table(
-                columns: 21,
-                table.cell(rowspan: 4)[Stage 1],
-                [...],
-                [$X$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$+$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$=$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [...],
+    #align(
+        center,
+        {
+            show figure: set block(breakable: true)
+            show table.cell: it => {
+                if (it.y == 10 - 1 and it.x > 0) { text(fill: red.darken(20%), it) } else { it }
+            }
+            figure(
+                table(
+                    columns: 21,
+                    table.cell(rowspan: 4)[Stage 1],
+                    [...],
+                    $X$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $+$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $=$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                [...],
-                [$X$],
-                [$X$],
-                [$1$],
-                [$1$],
-                [$+$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$=$],
-                [$1$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [...],
+                    [...],
+                    $X$,
+                    $X$,
+                    $1$,
+                    $1$,
+                    $+$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $=$,
+                    $1$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$1$],
-                [$+$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$=$],
-                [$1$],
-                [$1$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [...],
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $1$,
+                    $+$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $=$,
+                    $1$,
+                    $1$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$+$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$=$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [...],
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $+$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $=$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                table.cell(rowspan: 1)[Stage 2],
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$=$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [...],
+                    table.cell(rowspan: 1)[Stage 2],
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $=$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                table.cell(rowspan: 5)[Stage 3],
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$=$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [...],
+                    table.cell(rowspan: 5)[Stage 3],
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $=$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$1$],
-                [$1$],
-                [$=$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$Y$],
-                [$Y$],
-                [$Y$],
-                [...],
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $1$,
+                    $1$,
+                    $=$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $Y$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$1$],
-                [$=$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$Y$],
-                [$Y$],
-                [...],
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $1$,
+                    $=$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $Y$,
+                    $Y$,
+                    [...],
 
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$=$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$Y$],
-                [...],
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $=$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $Y$,
+                    [...],
 
-                [...],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$X$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$1$],
-                [$Y$#pin(1)],
-                [...],
-            ),
-            caption: [实现"$3+4$"的图灵机纸带及其操作过程],
-        )
-        #pinit-point-from(1, fill: red, offset-dx: 20pt, offset-dy: 20pt, body-dx: -20pt)[#text(
-            fill: red.darken(20%),
-        )[停机结果]]
-    ]
-    #subpar.grid(
-        figure(
-            table(
-                columns: 2,
-                inset: (x: 10pt, y: 8pt),
-                table.header([状态], [描述]),
-                [$A$], [$1 slash plus$判断状态],
-                [$B$], [$1$的搬运状态],
-                [$C$], [搬运完回退状态],
-                [$H$], [停机状态],
-            ),
-        ),
-        figure(
-            diagram(
-                let small-label(it) = [
-                    #set text(size: 0.8em)
-                    #set par(leading: 0.5em)
-                    #it
-                ],
-                node-stroke: .1em,
-                node-fill: gradient.radial(gray.lighten(80%), gray, center: (30%, 20%), radius: 80%),
-                // spacing: 4em,
-                node((0, 0), `B`, radius: 1.5em),
-                edge((0, 0), (0, 0), small-label[$+,+,R$\ $1,1,R$\ $=,=,R$], bend: 130deg, label-pos: 0.1),
-                edge("-|>", `Y,1,L`),
-                node((4, 0), `C`, radius: 1.5em),
-                edge(
-                    (4, 0),
-                    (4, 0),
-                    small-label[$1,1,L$\ $=,=,L$\ $+,+,L$],
-                    bend: 130deg,
-                    label-pos: 0.1,
+                    [...],
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $X$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    $1$,
+                    [$Y$#pin(1)],
+                    [...],
                 ),
-                edge((4, 0), (0, 1), `X,X,R`, "-|>"),
-                node((0, 1), `A`, radius: 1.5em),
-                edge((-1, .5), (0, 1), `Start`, "-|>", label-pos: -.1, label-side: center),
-                edge("u", `1,X,R`, "-|>"),
-                edge(`=,X,R`, "-|>", label-side: right),
-                edge((0, 1), (0, 1), small-label[$+,X,R$], bend: -130deg, label-pos: 0.1),
-                node((4, 1), `H`, radius: 1.5em, extrude: (-.4em, 0)),
-            ),
-        ),
+                caption: [实现"$3+4$"的图灵机纸带及其操作过程],
+            )
+            pinit-point-from(
+                1,
+                fill: red,
+                offset-dx: 20pt,
+                offset-dy: 15pt,
+                text(fill: red.darken(20%), "停机结果"),
+            )
+            subpar.grid(
+                figure(
+                    table(
+                        columns: 2,
+                        inset: (x: 10pt, y: 8pt),
+                        table.header([状态], [描述]),
+                        $A$, [$1 slash +$判断状态],
+                        $B$, [$1$的搬运状态],
+                        $C$, [搬运完回退状态],
+                        $H$, [停机状态],
+                    ),
+                ),
+                figure(
+                    diagram(
+                        let small-label(it) = {
+                            set text(size: 0.8em)
+                            set par(leading: 0.6em)
+                            it
+                        },
+                        node-stroke: .1em,
+                        node-fill: gradient.radial(gray.lighten(80%), gray, center: (30%, 20%), radius: 80%),
+                        node((0, 0), `B`, radius: 1.5em),
+                        edge((0, 0), (0, 0), small-label[`+,+,R`\ `1,1,R`\ `=,=,R`], bend: 130deg, label-pos: 0.1),
+                        edge("-|>", `Y,1,L`),
+                        node((4, 0), `C`, radius: 1.5em),
+                        edge((4, 0), (4, 0), small-label[`1,1,L`\ `=,=,L`\ `+,+,L`], bend: 130deg, label-pos: 0.9),
+                        edge((4, 0), (0, 1), `X,X,R`, "-|>", label-angle: auto),
+                        node((0, 1), `A`, radius: 1.5em),
+                        edge((-1, .5), (0, 1), `Start`, "-|>", label-pos: -.1, label-side: center),
+                        edge("u", `1,X,R`, "-|>"),
+                        edge(`=,X,R`, "-|>", label-side: right),
+                        edge((0, 1), (0, 1), `+,X,R`, bend: -130deg),
+                        node((4, 1), `H`, radius: 1.5em, extrude: (-.3em, 0)),
+                    ),
+                ),
 
-        columns: (1fr, 2fr),
-        caption: [图灵机状态描述及转换图],
-    )
-    #align(center)[
-        #figure(
-            table(
-                inset: (x: 12pt, y: 8pt),
-                columns: 6,
-                [序号], [状态], [读入], [写入], [移动], [转向],
-                [$1$], [$A$], [$1$], [$X$], [$R$], [$B$],
-                [$2$], [$A$], [$+$], [$X$], [$R$], [$A$],
-                [$3$], [$B$], [$+$], [$+$], [$R$], [$B$],
-                [$4$], [$B$], [$1$], [$1$], [$R$], [$B$],
-                [$5$], [$B$], [$=$], [$=$], [$R$], [$B$],
-                [$6$], [$B$], [$Y$], [$1$], [$L$], [$C$],
-                [$7$], [$C$], [$1$], [$1$], [$L$], [$C$],
-                [$8$], [$C$], [$=$], [$=$], [$L$], [$C$],
-                [$9$], [$C$], [$+$], [$+$], [$L$], [$C$],
-                [$10$], [$C$], [$X$], [$X$], [$R$], [$A$],
-                [$11$], [$A$], [$=$], [$X$], [$R$], [$H$],
-            ),
-            caption: [图灵机规则表],
-        )
-    ]
-]
+                columns: (1fr, 2fr),
+                caption: [图灵机状态描述及转换图],
+            )
+            figure(
+                table(
+                    inset: (x: 12pt, y: 8pt),
+                    columns: 6,
+                    [序号], [状态], [读入], [写入], [移动], [转向],
+                    $1$, $A$, $1$, $X$, $R$, $B$,
+                    $2$, $A$, $+$, $X$, $R$, $A$,
+                    $3$, $B$, $+$, $+$, $R$, $B$,
+                    $4$, $B$, $1$, $1$, $R$, $B$,
+                    $5$, $B$, $=$, $=$, $R$, $B$,
+                    $6$, $B$, $Y$, $1$, $L$, $C$,
+                    $7$, $C$, $1$, $1$, $L$, $C$,
+                    $8$, $C$, $=$, $=$, $L$, $C$,
+                    $9$, $C$, $+$, $+$, $L$, $C$,
+                    $10$, $C$, $X$, $X$, $R$, $A$,
+                    $11$, $A$, $=$, $X$, $R$, $H$,
+                ),
+                caption: [图灵机规则表],
+            )
+        },
+    )]
 
 #question[
     请说明最精简的图灵机需要哪几条指令并给出原因.
@@ -408,7 +404,7 @@
 ]
 
 #question[
-    对Linux下的可执行程序与目标文件使用`objdump -S`.简述输出内容并分析二者的区别.
+    对Linux下的可执行程序与目标文件使用```bash objdump -S```.简述输出内容并分析二者的区别.
 ]
 
 #question[
@@ -425,7 +421,7 @@
     回答下列问题:
     + 运行时库调用和系统调用有什么区别和联系?为什么?
     + C语言程序可以用哪些方法结束执行并退出系统?
-    + 在`main`函数`return`后,运行时库做了什么?
+    + 在```c main```函数```c return```后,运行时库做了什么?
 ]
 
 #question[
@@ -435,7 +431,7 @@
 #question[
     回答下面问题:
     + Linux的`*.so`和Windows的`*.dll`有什么区别?
-    + `*.so`中`GOT`和`PLT`的作用是什么?
+    + `*.so`中GOT和PLT的作用是什么?
 ]
 
 #question[
@@ -448,22 +444,25 @@
 
 #question[
     考虑如下线程,均在$0$时刻按照$E 1 - E 5$顺序先后提交给操作系统.
-    #align(center)[
-        #show table.cell.where(y: 0): it => text(white, size: 13pt, weight: "bold", it)
-        #table(
-            fill: (_, y) => if y == 0 { rgb("#ce858a") } else { rgb("#e7c3c5") },
-            row-gutter: (range(0, 5).map(i => if (i == 0) { 0.2em } else { 0.1em })),
-            column-gutter: 0.1em,
-            inset: (x: 20pt, y: 10pt),
-            columns: 3,
-            [线程], [优先级], [运行时间],
-            [$E 1$], [$3$], [$10$],
-            [$E 2$], [$1$], [$1$],
-            [$E 3$], [$3$], [$2$],
-            [$E 4$], [$4$], [$1$],
-            [$E 5$], [$2$], [$5$],
-        )
-    ]
+    #align(
+        center,
+        {
+            show table.cell.where(y: 0): it => text(white, size: 13pt, weight: "bold", it)
+            table(
+                fill: (x, y) => if y == 0 { rgb("#ce858a") } else { rgb("#e7c3c5") },
+                row-gutter: (range(0, 5).map(i => if (i == 0) { 0.2em } else { 0.1em })),
+                column-gutter: 0.1em,
+                inset: (x: 20pt, y: 10pt),
+                columns: 3,
+                [线程], [优先级], [运行时间],
+                $E 1$, $3$, $10$,
+                $E 2$, $1$, $1$,
+                $E 3$, $3$, $2$,
+                $E 4$, $4$, $1$,
+                $E 5$, $2$, $5$,
+            )
+        },
+    )
     + 画出使用非抢占式FP、FCFS以及SJF时的执行图.
     + 对于(1)中的各个执行图,各个线程的等待时间和周转时间是多少?
     + 哪种调度算法的平均等待时间最短?为什么?
@@ -522,7 +521,7 @@
 ]
 
 #question[
-    最新的x86-64系统使用五级页表.假设快表命中时,若缓存命中则内存访问都需要$1$个时钟周期,否则需要$100$个时钟周期.(tips:快表不命中时需要访存查询表项,这也可能缓存不命中)回答下列问题:
+    最新的`x86-64`系统使用五级页表.假设快表命中时,若缓存命中则内存访问都需要$1$个时钟周期,否则需要$100$个时钟周期.(tips:快表不命中时需要访存查询表项,这也可能缓存不命中)回答下列问题:
     + 第一次访问一个不在快表中存在的页需要多少时钟周期?紧接着访问同一页又需要多少时钟周期?
     + 假设快表总是命中,而缓存命中率$c$,则平均一次内存访问需要多少时钟周期?
     + 假设缓存总是命中,而快表命中率$t$,则平均一次内存访问需要多少时钟周期?
@@ -555,8 +554,8 @@
     + 升级内存容量.
     + 更换同平台的高端主板.
     + 将硬盘组成RAID.
-    + 将硬盘换成$20 #TB$HDD.
-    + 将硬盘换成$1 #TB$SSD.
+    + 将硬盘换成#TB[20]HDD.
+    + 将硬盘换成#TB[1]SSD.
     + 升级显卡和显示器.
     + 改进请求分页算法.
     + 增加使用更大的页.
@@ -635,7 +634,7 @@
 #question[
     查阅RAMDISK相关资料回答:
     + RAMDISK和普通磁盘有什么异同?
-    + 将分页文件`pagefile.sys`放在RAMDISK上加速读写有意义吗?为什么?#footnote[假设机器安装$32 #GB$物理内存且分别考虑$32$位和$64$位操作系统]
+    + 将分页文件`pagefile.sys`放在RAMDISK上加速读写有意义吗?为什么?#footnote[假设机器安装#GB[32]物理内存且分别考虑$32$位和$64$位操作系统]
 ]
 
 #question[

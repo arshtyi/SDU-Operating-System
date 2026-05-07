@@ -1,34 +1,54 @@
+
 #import "@preview/ezexam:0.3.1": *
-#import "@preview/fancy-units:0.1.1": add-macros, fancy-units-configure, num, qty, unit
+#import "@preview/subpar:0.2.2"
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
+#import "@preview/zero:0.6.1": num, set-num, set-unit, zi
+#import "@preview/pinit:0.2.2": *
 
 #show: setup.with(
     mode: EXAM,
     resume: false,
-    enum-spacing: 1.5em,
+    heading-top: 0em,
+    heading-bottom: 0.4em,
+    line-height: 0.65em,
+    par-spacing: 0.65em,
+    enum-spacing: 0.65em,
+    list-spacing: 0.65em,
 )
+#set par(justify: true)
 #set smartquote(quotes: "\"\"")
-#show link: it => text(fill: blue.darken(20%))[#underline(it)]
+#show link: it => text(fill: blue.darken(20%), underline(it))
+#show raw: set text(font: ("IBM Plex Mono", "Source Han Sans SC", "Noto Sans CJK SC"))
+#show raw.where(block: false): box.with(
+    fill: luma(240),
+    inset: (x: 0.3em, y: 0em),
+    outset: (x: 0em, y: 0.3em),
+    radius: 0.2em,
+)
+#show raw.where(block: true): block.with(
+    fill: luma(248),
+    stroke: 0.5pt + rgb("bfbfbf"),
+    inset: 0.7em,
+    radius: 4pt,
+)
+#set-unit(fraction: "power")
 
-#title[
-    山东大学计算机科学与技术学院操作系统课堂测验
-]
+#let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
+#let (Hz, bit, Gbps, K, B, GB, TB) = (
+    zi.declare("Hz"),
+    zi.declare("bit"),
+    zi.declare("Gbps"),
+    zi.declare("K"),
+    zi.declare("B"),
+    zi.declare("GB"),
+    zi.declare("TB"),
+)
+
+#title[山东大学计算机科学与技术学院操作系统课堂测验]
 #exam-info(info: (班级: "24智能", 教师: "刘健中"))
 #notice(
     [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
-    [源码:#link("https://github.com/arshtyi/SDU-Operating-System").],
-)
-
-#let (K,) = (
-    unit[K],
-)
-#let (Hz,) = (
-    unit[Hz],
-)
-#let (Gbps,) = (
-    unit[Gbps],
-)
-#let (bit,) = (
-    unit[bit],
+    [源码:#link("https://github.com/arshtyi/SDU-Operating-System", "source").],
 )
 
 = No.1
@@ -105,12 +125,12 @@
 ]
 = No.16
 #question[
-    证明HDMI1.4无法提供$4 #K @ 60 #Hz$的显示输出.
+    证明`HDMI1.4`无法提供#K[4]\@#Hz[60]的显示输出.
 
     Tips:
-    + HDMI1.4的最大带宽为$10.2 #Gbps$.
-    + $4#K$的分辨率为$3840 times 2160$.
-    + 显示器一般使用$24#bit$色彩空间.
+    + `HDMI1.4`的最大带宽为#Gbps[10.2].
+    + #K[4]的分辨率为$3840 times 2160$.
+    + 显示器一般使用#bit[24]色彩空间.
 ]
 
 = No.17
