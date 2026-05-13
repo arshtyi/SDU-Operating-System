@@ -1,4 +1,3 @@
-
 #import "@preview/ezexam:0.3.1": *
 #import "@preview/subpar:0.2.2"
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
@@ -151,4 +150,9 @@
 = No.18
 #question[
     简述Peterson算法中`want`和`turn`变量各自的作用以及为什么不可省略.
+]
+
+= No.19
+#question[
+    简述自旋锁和阻塞锁各自的优缺点以及futex通过什么思想以达到折中.
 ]
