@@ -17,7 +17,7 @@
 #set par(justify: true)
 #set smartquote(quotes: "\"\"")
 #show link: it => text(fill: blue.darken(20%), underline(it))
-#show raw: set text(font: ("IBM Plex Mono", "Source Han Sans SC", "Noto Sans CJK SC"))
+#show raw: set text(font: ("IBM Plex Mono", "Noto Sans CJK SC"))
 #show raw.where(block: false): box.with(
     fill: luma(240),
     inset: (x: 0.3em, y: 0em),
@@ -42,8 +42,13 @@
     zi.declare("GB"),
     zi.declare("TB"),
 )
+#let Title = "山东大学计算机科学与技术学院操作系统课堂测验"
+#let author = "arshtyi"
+#let date = datetime.today()
 
-#title[山东大学计算机科学与技术学院操作系统课堂测验]
+#set document(title: Title, author: author, date: date)
+
+#title(Title)
 #exam-info(info: (班级: "24智能", 教师: "刘健中"))
 #notice(
     [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
@@ -155,4 +160,15 @@
 = No.19
 #question[
     简述自旋锁和阻塞锁各自的优缺点以及futex通过什么思想以达到折中.
+]
+
+= No.20
+#question[
+    在无锁数据结构编程中:
+    + 什么是ABA问题?
+    + 如何通过编程技巧避免此问题.
+]
+
+#question[
+    给定一张有向图,设计算法求解是否有环.
 ]

@@ -45,7 +45,13 @@
     zi.declare("TB"),
 )
 
-#title[山东大学计算机科学与技术学院操作系统课后作业]
+#let Title = "山东大学计算机科学与技术学院操作系统课后作业"
+#let author = "arshtyi"
+#let date = datetime.today()
+
+#set document(title: Title, author: author, date: date)
+
+#title(Title)
 #exam-info(info: (班级: "24智能", 教师: "刘健中"))
 #notice(
     [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
