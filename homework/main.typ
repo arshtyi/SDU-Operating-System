@@ -3,6 +3,8 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 #import "@preview/zero:0.6.1": num, set-num, set-unit, zi
 #import "@preview/pinit:0.2.2": *
+#import "@preview/codly:1.3.0": *
+#import "@preview/codly-languages:0.1.10": *
 
 #show: setup.with(
     mode: EXAM,
@@ -24,15 +26,17 @@
     outset: (x: 0em, y: 0.3em),
     radius: 0.2em,
 )
-#show raw.where(block: true): block.with(
+#show: codly-init
+#codly(
+    languages: codly-languages,
+    zebra-fill: none,
     fill: luma(248),
     stroke: 0.5pt + rgb("bfbfbf"),
-    inset: 0.7em,
     radius: 4pt,
 )
 #set-unit(fraction: "power")
 
-#let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
+#let question = question.with(supplement: "Q", ref-on: true, show-ref-prefix: false)
 #let (mus, ms, h) = (
     zi.declare("mus"),
     zi.declare("ms"),
@@ -52,11 +56,11 @@
 #set document(title: Title, author: author, date: date)
 
 #title(Title)
-#exam-info(info: (班级: "24智能", 教师: "刘健中"))
-#notice(
-    [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
-    [源码:#link("https://github.com/arshtyi/SDU-Operating-System", "source").],
-)
+#exam-info(info: (
+    班级: "24智能",
+    教师: "刘健中",
+    源码: link("https://github.com/arshtyi/SDU-Operating-System", "source"),
+))
 
 = No.1
 #question[
@@ -89,234 +93,228 @@
         center,
         {
             show figure: set block(breakable: true)
-            show table.cell: it => {
-                if (it.y == 10 - 1 and it.x > 0) { text(fill: red.darken(20%), it) } else { it }
+            {
+                show table.cell: it => if (it.y == 10 - 1 and it.x > 0) { text(fill: red.darken(20%), it) } else { it }
+                figure(
+                    table(
+                        columns: 21,
+                        table.cell(rowspan: 4)[Stage 1],
+                        [...],
+                        $X$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $+$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $=$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        [...],
+                        $X$,
+                        $X$,
+                        $1$,
+                        $1$,
+                        $+$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $=$,
+                        $1$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $1$,
+                        $+$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $=$,
+                        $1$,
+                        $1$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $+$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $=$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        table.cell(rowspan: 1)[Stage 2],
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $=$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        table.cell(rowspan: 5)[Stage 3],
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $=$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $1$,
+                        $1$,
+                        $=$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $Y$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $1$,
+                        $=$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $Y$,
+                        $Y$,
+                        [...],
+
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $=$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $Y$,
+                        [...],
+
+                        [...],
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $X$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        $1$,
+                        [$Y$#pin(1)],
+                        [...],
+                    ),
+                    caption: [实现"$3+4$"的图灵机纸带及其操作过程],
+                )
+                pinit-point-from(1, fill: red, offset-dx: 20pt, offset-dy: 15pt, text(fill: red.darken(20%))[停机结果])
             }
-            figure(
-                table(
-                    columns: 21,
-                    table.cell(rowspan: 4)[Stage 1],
-                    [...],
-                    $X$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $+$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $=$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    [...],
-                    $X$,
-                    $X$,
-                    $1$,
-                    $1$,
-                    $+$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $=$,
-                    $1$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $1$,
-                    $+$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $=$,
-                    $1$,
-                    $1$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $+$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $=$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    table.cell(rowspan: 1)[Stage 2],
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $=$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    table.cell(rowspan: 5)[Stage 3],
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $=$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $1$,
-                    $1$,
-                    $=$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $Y$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $1$,
-                    $=$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $Y$,
-                    $Y$,
-                    [...],
-
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $=$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $Y$,
-                    [...],
-
-                    [...],
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $X$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    $1$,
-                    [$Y$#pin(1)],
-                    [...],
-                ),
-                caption: [实现"$3+4$"的图灵机纸带及其操作过程],
-            )
-            pinit-point-from(
-                1,
-                fill: red,
-                offset-dx: 20pt,
-                offset-dy: 15pt,
-                text(fill: red.darken(20%), "停机结果"),
-            )
             subpar.grid(
                 figure(
                     table(
@@ -329,13 +327,13 @@
                         $H$, [停机状态],
                     ),
                 ),
-                figure(
+                figure({
+                    let small-label(it) = {
+                        set text(size: 0.8em)
+                        set par(leading: 0.6em)
+                        it
+                    }
                     diagram(
-                        let small-label(it) = {
-                            set text(size: 0.8em)
-                            set par(leading: 0.6em)
-                            it
-                        },
                         node-stroke: .1em,
                         node-fill: gradient.radial(gray.lighten(80%), gray, center: (30%, 20%), radius: 80%),
                         node((0, 0), `B`, radius: 1.5em),
@@ -350,8 +348,8 @@
                         edge(`=,X,R`, "-|>", label-side: right),
                         edge((0, 1), (0, 1), `+,X,R`, bend: -130deg),
                         node((4, 1), `H`, radius: 1.5em, extrude: (-.3em, 0)),
-                    ),
-                ),
+                    )
+                }),
 
                 columns: (1fr, 2fr),
                 caption: [图灵机状态描述及转换图],
@@ -912,4 +910,280 @@
     除了`select`和`epoll`外`poll`也能同时等待多个`fd`:
     + `poll`在Linux内核源码哪一部分实现?
     + `poll`和`select`及`epoll`哪一个更相似?为什么?
+]
+
+= No.12
+#question[
+    阅读#link("https://www.cmpedu.com/books/book/5610337.htm", "《操作系统概念》")相关内容.
+]
+
+#question[
+    Linux文件锁分为Mandatory Lock和Advisory Lock/Cooperative Lock:
+    + 它们有什么区别?
+    + 最常用的是哪种?为什么?
+]
+
+#question[
+    用锦标赛法实现的多指令流锁有FCFS意义上的公平性吗?为什么?
+]
+
+#question[
+    回答:
+    + 无锁数据结构一定比有锁数据结构性能好吗?
+    + 无等待数据结构一定比无锁数据结构性能好吗?
+]
+
+#question[
+    访存序上,x86使用TSO而ARM/RISC-V使用WEAK:
+    + 后者有什么优势?
+    + x86为何不改用WEAK.
+]
+
+#question[
+    回答:
+    + 实际中XCHG、BTS、CMPXCHG实现的自旋锁性能没有差别,CMPXCHG的理论优势没有体现是为什么?
+    + 我们不会在纤程库和协程库中使用自旋锁,在单CPU系统中亦不鼓励,为什么?
+]
+
+#question[
+    回答:
+    + 参考RCU修改单向链表节点的过程图(亦如下)给出RCU删除和添加节点的过程图.
+    + RCU操作能否用于双向链表?给出解决方案或理由.
+    #{
+        let edge = edge.with(marks: "-|>")
+        set text(fill: white)
+        diagram(
+            node-shape: rect,
+            node-stroke: 1pt + black,
+            node((0, 0), "前节点", fill: rgb("#d02f35")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            node((0, 1), "老节点", fill: rgb("#d02f35")),
+            edge("r", stroke: 2pt + rgb("#00b050")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            node((0, 2), "后节点", fill: rgb("#d02f35")),
+
+            node((2, 0), "前节点", fill: rgb("#d02f35")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            edge("ld", text(fill: rgb("#ed7d31"))[CAS], dash: "dashed", stroke: 1pt + rgb("#ed7d31")),
+            node((2, 1), "老节点", fill: rgb("#d02f35")),
+            edge("r", stroke: 2pt + rgb("#00b050")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            node((2, 2), "后节点", fill: rgb("#d02f35")),
+            node((1.2, 1), "新节点", fill: rgb("#ed7d31")),
+            edge("rd", stroke: 1pt + rgb("#ed7d31")),
+
+            node((3, 0), "前节点", fill: rgb("#d02f35")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            node((3, 1), "新节点", fill: rgb("#d02f35")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            node((3, 2), "后节点", fill: rgb("#d02f35")),
+            node((3.8, 1), "老节点", fill: rgb("#00b0f0")),
+            edge("ld", stroke: 1pt + rgb("#00b0f0")),
+            edge("r", stroke: 2pt + rgb("#00b050")),
+
+            node((5, 0), "前节点", fill: rgb("#d02f35")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            node((5, 1), "新节点", fill: rgb("#d02f35")),
+            edge("d", stroke: 1pt + rgb("#d02f35")),
+            node((5, 2), "后节点", fill: rgb("#d02f35")),
+        )
+    }
+]
+
+#question[
+    回答:
+    + 给出将哲学家用餐问题中会导致死锁的算法(亦如下)改成"无法获得任何一根筷子的锁就立即释放已有的锁并从头开始尝试获取直到成功"的算法伪代码.
+    + 考虑(1)中算法:
+        + 能否解决死锁?
+        + 会导致什么新问题?为什么?
+    + 如何解释连续获取多个锁的算法会导致问题(无论哪种),实际中遇到需要获取多个锁才能进入临界区时却表现良好.
+
+    ```c
+    mutex_t chopstick[5] = {0};
+    // For the i-th philosopher
+    while (1) {
+        think();
+        lock(&chopstick[i % 5]);
+        lock(&chopstick[(i + 1) % 5]);
+        eat();
+        unlock(&chopstick[(i + 1) % 5]);
+        unlock(&chopstick[i % 5]);
+    }
+    ```
+]
+
+#question[
+    阅读有关Hardware Transactional Memory的资料,说明其与LL/SC的区别.
+]
+
+#question[
+    系统中有多个生产者和消费者共享一个容量#num[1e3]产品的缓冲区:
+    - 未满: 生产者可放入#num[1]件产品;
+    - 不空: 消费者可取出产品且某消费者从缓冲区连续取#num[10]件产品后其他消费者才能继续.
+    - 否则: 等待.
+    用信号量($plus.minus$锁)描述生产者和消费者的同步关系.
+]
+
+#question[
+    第一个软件互斥算法是$1968$年的Dekker算法:
+    + 仿照对Peterson算法的描述(亦如下)写出此算法.
+    + 证明.
+    + 给出Peterson算法的优处.
+
+    ```c
+    int want[2] = {0};
+    int turn = 0;
+    ```
+    #{
+        set table.cell(stroke: none)
+        table(
+            columns: (1fr, 1fr),
+            [指令流$S 0$], [指令流$S 1$],
+            [```c
+            want[0] = 1;
+            turn = 1;
+            while (want[1] == 1 && turn != 0) {}
+            // 访问临界资源
+            want[0] = 0;```],
+            [```c
+            want[1] = 1;
+            turn = 0;
+            while (want[0] == 1 && turn != 1) {}
+            // 访问临界资源
+            want[1] = 0;
+            ```],
+        )
+    }
+]
+
+#question[
+    给出用栈存放MPMC问题的伪代码.
+]
+
+#question[
+    条件变量的```c signal()```操作不一定需要加锁但是会导致唤醒信号丢失,给出一种情况.
+]
+
+#question[
+    银行家算法管理的未死锁系统中,下列哪些操作一定不导致死锁:
+    + 增加/减少资源数.
+    + 增加/减少进程资源上限.
+    + 增加/减少进程数.
+]
+
+#question[
+    考虑如下交通图:
+    + 通过死锁的$4$条件证明图中存在死锁.
+    + 设计一个简单法则保证此类死锁不再发生.
+
+    #{
+        let W = 14cm
+        let H = 10cm
+        let road_fill = rgb("#e7e7e7")
+        let car_fill = rgb("#f8f8f8")
+        let car_stroke = 0.55pt + black
+        let at(x, y, body) = place(top + left, dx: x, dy: y, body)
+        let road(x, y, w, h) = at(x, y, rect(width: w, height: h, fill: road_fill, stroke: none))
+        let hcar(x, y, l: 0.72cm) = at(x, y, rect(
+            width: l,
+            height: 0.34cm,
+            fill: car_fill,
+            stroke: car_stroke,
+            radius: 0.08cm,
+        ))
+        let vcar(x, y, l: 0.72cm) = at(x, y, rect(
+            width: 0.34cm,
+            height: l,
+            fill: car_fill,
+            stroke: car_stroke,
+            radius: 0.08cm,
+        ))
+        let hbus(x, y) = hcar(x, y, l: 2.25cm)
+        let vbus(x, y) = vcar(x, y, l: 2.10cm)
+        block(width: W, height: H, {
+            // Roads
+            road(0.35cm, 1.20cm, 13.3cm, 1.05cm)
+            road(0.35cm, 7.70cm, 13.3cm, 0.80cm)
+            road(3.25cm, 0cm, 0.75cm, 10cm)
+            road(9.55cm, 0cm, 0.75cm, 10cm)
+
+            // Top vertical approach, left side
+            vcar(3.43cm, 0.38cm)
+
+            // Top horizontal road
+            hbus(4.10cm, 1.52cm)
+            hcar(6.85cm, 1.58cm)
+            hcar(8.20cm, 1.58cm)
+            hcar(9.58cm, 1.58cm)
+            hcar(10.85cm, 1.52cm, l: 1.05cm)
+
+            // Left vertical road
+            vcar(3.43cm, 2.30cm)
+            vbus(3.38cm, 3.40cm)
+            vcar(3.43cm, 5.80cm)
+            vcar(3.43cm, 6.85cm)
+
+            // Bottom horizontal road
+            hcar(1.55cm, 7.95cm)
+            hcar(3.90cm, 7.95cm)
+            hbus(5.15cm, 7.88cm)
+            hcar(8.35cm, 7.95cm)
+
+            // Right vertical road
+            vcar(9.78cm, 2.55cm)
+            vcar(9.78cm, 3.70cm)
+            vcar(9.78cm, 4.85cm)
+            vcar(9.78cm, 6.00cm)
+            vbus(9.72cm, 7.00cm)
+        })
+    }
+]
+
+#question[
+    考虑哲学家就餐问题:筷子在桌子中央且哲学家可用任$2$根筷子.假定一次只能请求$1$根.设计一条简单规则根据现有筷子分配确定一个特定请求是否可以满足且不会出现死锁.
+]
+#question[
+    假设一个系统状态如下图,回答:
+    + 系统当前是否处于安全状态?若是,给出一个进程完成执行的顺序.
+    + 当进程$P 1$请求$(1,1,0,0)$,能否立刻允许.
+    + 当进程$P 4$请求$(0,0,2,0)$,能否立刻允许.
+    + 简单描述一种算法思想求得当前系统状态下所有可完成执行的顺序.
+
+    #{
+        let to-grid(it) = {
+            let res = ()
+            for body in it {
+                if body.len() == 0 { res.push(grid([])) } else {
+                    let s = body.clusters().map(c => eval(c, mode: "math"))
+                    res.push(grid(
+                        stroke: none,
+                        align: center + horizon,
+                        columns: (1fr,) * s.len(),
+                        ..s
+                    ))
+                }
+            }
+            res
+        }
+        let lines = {
+            let res = ()
+            for i in range(1, 4) { res.push(table.hline(y: 1, start: i, end: i + 1)) }
+            res
+        }
+        set align(center)
+        set table.cell(stroke: none)
+        table(
+            columns: (2cm,) + (3cm,) * 3,
+            inset: (y: 8pt),
+            column-gutter: 2em,
+            ..lines,
+            [], [Allocation], [Max], [Available],
+            [], ..to-grid(("ABCD", "ABCD", "ABCD")),
+            $P 0$, ..to-grid(("2001", "4212", "3321")),
+            $P 1$, ..to-grid(("3121", "5252", "")),
+            $P 2$, ..to-grid(("2103", "2316", "")),
+            $P 3$, ..to-grid(("1312", "1424", "")),
+            $P 4$, ..to-grid(("1432", "3665", "")),
+        )
+    }
 ]

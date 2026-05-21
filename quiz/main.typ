@@ -32,7 +32,7 @@
 )
 #set-unit(fraction: "power")
 
-#let question = question.with(supplement: "Q ", ref-on: true, show-ref-prefix: false)
+#let question = question.with(supplement: "Q", ref-on: true, show-ref-prefix: false)
 #let (Hz, bit, Gbps, K, B, GB, TB) = (
     zi.declare("Hz"),
     zi.declare("bit"),
@@ -49,11 +49,11 @@
 #set document(title: Title, author: author, date: date)
 
 #title(Title)
-#exam-info(info: (班级: "24智能", 教师: "刘健中"))
-#notice(
-    [出于方便使用#link("https://github.com/gbchu/ezexam", "gbchu/ezexam:0.3.1")作模板.],
-    [源码:#link("https://github.com/arshtyi/SDU-Operating-System", "source").],
-)
+#exam-info(info: (
+    班级: "24智能",
+    教师: "刘健中",
+    源码: link("https://github.com/arshtyi/SDU-Operating-System", "source"),
+))
 
 = No.1
 #question[

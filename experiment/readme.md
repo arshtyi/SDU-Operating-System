@@ -2,8 +2,6 @@
 
 > `install.sh`用于快速在实验室机器上配置环境.
 
-## Environment
-
 - ubuntu 24.04(实验室机器为18.04)
 - xmake
 - libreadline-dev
