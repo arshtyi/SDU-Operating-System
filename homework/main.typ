@@ -1187,3 +1187,36 @@
         )
     }
 ]
+
+= No.13
+#question[
+    回答:
+    + 跨进程传递大量数据时为何共享内存比消息队列快.
+    + 若传递长度很长的消息,怎么结合消息队列与共享内存的优势.
+]
+
+#question[
+    假设某系统仅原生实现了消息队列, 接口```c alloc(&queue)```, ```c send(&queue, item)```, ```c item = recv(&queue)```, ```c free(&queue)```.给出信号量实现的伪代码.
+]
+
+#question[
+    使用socket进行IPC的优劣何在.
+]
+
+#question[
+    回答:
+    + signal机制中可靠与不可靠信号区别.
+    + 课件中给出的(`SIGHUP`, `SIGINT`, `SIGKILL`, `SIGSEGV`, `SIGALRM`, `SIGTERM`, `SIGUSR1`, `SIGUSR2`)是哪种?
+]
+
+#question[
+    同步IPC为什么需要参与通信的两者间有比异步IPC更多的信任?
+]
+
+#question[
+    为什么线程迁移的入口点由接受者而不是发起者指定.
+]
+
+#question[
+    相比Linux, Windows提供的IPC有什么特色?
+]
